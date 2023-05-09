@@ -3,8 +3,6 @@ import axios from 'axios'
 
 import personService from './services/persons'
 
-const baseUrl = '/api/notes'
-
 const Number = ({ person, persons, setPersons, setMsg, setClr }) => {
   const delPerson = () => {
     if (window.confirm("Delete")) {

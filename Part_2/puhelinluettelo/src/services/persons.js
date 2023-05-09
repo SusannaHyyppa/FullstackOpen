@@ -8,7 +8,7 @@ const getAll = () => {
 const create = newObject => {
     return axios.post(baseUrl, newObject)
 }
-
+ 
 const del = (id) => {
     console.log("ABCAS")
     return axios.delete(`${baseUrl}/${id}`)
