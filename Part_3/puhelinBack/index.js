@@ -6,6 +6,7 @@ const morgan = require('morgan')
 morgan.token('postdata', (req) => { return JSON.stringify(req.body) })
 
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :postdata'))
+app.use(express.static('build'))
 
 let persons = [
     { 
