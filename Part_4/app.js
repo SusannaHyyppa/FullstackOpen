@@ -25,6 +25,10 @@ app.use(express.json())
 
 app.use(tokenExtractor)
 app.use(userExtractor)
+if (process.env.NODE_ENV === 'test') {
+  const testingRouter = require('./controllers/resets')
+  app.use('/api/testing', testingRouter)
+}
 
 app.use('/api/blogs', blogsRouter)
 app.use('/api/users', usersRouter)

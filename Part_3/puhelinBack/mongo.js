@@ -18,10 +18,10 @@ const personSchema = new mongoose.Schema({
 const Person = mongoose.model('Person', personSchema)
 
 const person = new Person({
-    name: name,
-    number: number,
-  })
-  
+  name: name,
+  number: number,
+})
+
 
 if (process.argv.length === 3) {
   console.log('phonebook:')
@@ -32,10 +32,10 @@ if (process.argv.length === 3) {
     mongoose.connection.close()
   })
 } else {
-    person.save().then(result => {
-        console.log(`added ${name} number ${number} to phonebook`)
-        mongoose.connection.close()
-    })
-      
+  person.save().then(result => {
+    console.log(`added ${result.name} number ${result.number} to phonebook`)
+    mongoose.connection.close()
+  })
+
 }
 

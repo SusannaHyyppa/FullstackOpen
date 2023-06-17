@@ -5,8 +5,6 @@ const Blog = require('../models/blog')
 const blogs = require('./blogs')
 const api = supertest(app)
 
-
-
 beforeEach(async () => {
     await Blog.deleteMany({})
     const blogObject = blogs.map(blog => new Blog(blog))

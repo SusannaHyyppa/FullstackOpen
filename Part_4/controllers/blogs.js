@@ -18,9 +18,7 @@ blogsRouter.post('/', async (request, response) => {
     return response.status(400).json({error: "no title or url"})
   } 
 
-
   const user = await User.findById(request.user.id)
-
   const blog = new Blog({
       title: body.title,
       author: body.author,
@@ -28,6 +26,7 @@ blogsRouter.post('/', async (request, response) => {
       likes: body.likes || 0,
       user: user._id
   })
+
 
   const savedBlog = await blog.save()
   user.blogs = user.blogs.concat(savedBlog._id)
@@ -39,16 +38,18 @@ blogsRouter.post('/', async (request, response) => {
 blogsRouter.delete('/:id', async (request, response) => {
   try {
     const user = request.user
-
+    console.log(user)
     const blog = await Blog.findById(request.params.id)
-
-    if ( blog.user.toString() !== user._id.toString() ) {
+    
+    if ( blog.user.toString() !== user.id.toString() ) {
       return response.status(401).json({error: "unauthorized"})
     }
+    console.log("?????")
     await Blog.findByIdAndRemove(request.params.id)
     response.status(204).end()
   } 
   catch (exception) {
+    console.log(exception)
     response.status(400).json({error: "bad id"})
   }
 })
